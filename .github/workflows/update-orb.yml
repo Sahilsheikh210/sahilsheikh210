@@ -2,20 +2,24 @@ name: Generate Animated Orb
 
 on:
   schedule:
-    - cron: '0 0 * * *' # Runs every day at midnight (optional, keeps it active)
-  workflow_dispatch: # Allows you to run it manually from the Actions tab
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+# NEW: Explicitly grant permissions to push code back to your repo
+permissions:
+  contents: write 
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # UPDATED to v4 to fix the warning
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4 # UPDATED to v4
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Run JavaScript Generator
         run: node generate.js
