@@ -1,5 +1,1 @@
-### Welcome to my profile! 🌌
-
-<p align="center">
-  <img src="./plasma-orb.svg" alt="Glowing Purple Orb" width="300" />
-</p>
+<text x="15" y="130" transform="skewY(26.5)" class="text-overlay">NEW TEXT HERE</text>
