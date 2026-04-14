@@ -1,6 +1,7 @@
-const fs = require('fs');
-const { createCanvas } = require('canvas');
-const { prepareWithSegments, layoutWithLines, measureLineStats } = require('@chenglou/pretext');
+// scripts/generate-svg.mjs
+import fs from 'fs';
+import { createCanvas } from 'canvas';
+import { prepareWithSegments, layoutWithLines } from '@chenglou/pretext';
 
 // Setup canvas for text measurement
 const canvas = createCanvas(800, 400);
@@ -10,7 +11,7 @@ const WIDTH = 800;
 const LINE_HEIGHT = 42;
 const FONT = '600 32px "SF Pro Display", Inter, system-ui, sans-serif';
 
-const text = "Hello, I'm a developer who loves \\nbuilding unique interfaces \\nwith precise typography ✨";
+const text = "Hello, I'm a developer who loves \nbuilding unique interfaces \nwith precise typography ✨";
 
 // Prepare text with Pretext
 const prepared = prepareWithSegments(text, FONT, { whiteSpace: 'pre-wrap' });
