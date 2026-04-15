@@ -1,14 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
-const ASSETS_DIR = path.join(__dirname, 'flappy-bird-assets-master', 'sprites');
+let ASSETS_DIR = path.join(__dirname, 'flappy-bird-assets-master', 'sprites');
+
+// If the folder is nested (common with github downloads)
+if (!fs.existsSync(ASSETS_DIR)) {
+    ASSETS_DIR = path.join(__dirname, 'flappy-bird-assets-master', 'flappy-bird-assets-master', 'sprites');
+}
+
+console.log(`Using assets from: ${ASSETS_DIR}`);
 
 // Convert an image file to a base64 Data URI
 function getBase64Image(filename) {
     const filePath = path.join(ASSETS_DIR, filename);
     if (!fs.existsSync(filePath)) {
-        console.warn(`Warning: Could not find ${filename}`);
-        return '';
+        throw new Error(`CRITICAL ERROR: Could not find ${filename} at ${filePath}`);
     }
     const data = fs.readFileSync(filePath);
     return `data:image/png;base64,${data.toString('base64')}`;
